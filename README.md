@@ -1,5 +1,5 @@
-# wdcs
-Wallpaper Downloader CLI Script
+# wdct
+Wallpaper Downloader CLI Tool
 
 ### Build
 ```cargo build --release```
