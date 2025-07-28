@@ -5,7 +5,7 @@ Wallpaper Downloader CLI Tool
 ```cargo build --release```
 
 ### Usage
-```wdcs <Tags> [Sorting]```
+```wdct <Tags> [Sorting]```
 
 You can use multiple tags. Sorting is optional and it will be based on date_added by default. 
 
