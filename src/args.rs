@@ -2,7 +2,7 @@ use clap::Parser;
 
 #[derive(Parser)]
 pub struct Args {
-    ///Search query
+    ///Wallpaper tags
     #[arg(short, long)]
     pub search_query: String,
     ///Shows wallpapers based on a criteria or sorting.
