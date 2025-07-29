@@ -25,7 +25,6 @@ pub fn request_wallpapers(url: &String) -> WallhavenResponse {
         .unwrap()
         .text()
         .unwrap();
-    println!("{} // {}", &request, &url);
     let urls: WallhavenResponse = serde_json::from_str(&request).unwrap();
 
     for n in &urls.data {

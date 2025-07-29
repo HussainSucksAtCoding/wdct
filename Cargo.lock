@@ -1424,7 +1424,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "wdcs"
+name = "wdct"
 version = "0.1.0"
 dependencies = [
  "clap",
