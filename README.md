@@ -3,6 +3,7 @@ Wallpaper Downloader CLI Tool
 
 ### Build
 ```cargo build --release```
+
 The executable should spawn in target/release
 
 ### Usage
