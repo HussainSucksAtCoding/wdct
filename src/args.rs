@@ -16,8 +16,6 @@ pub struct UserArgs {
     #[arg(short, long)]
     pub tags: String,
     ///Shows wallpapers based on a criteria or sorting.
-    ///
-    ///{date_added(default), relevance, random, views, favorites, toplist}
     #[arg(value_enum, short, long)]
     pub sorting: Option<Sorting>,
 }
