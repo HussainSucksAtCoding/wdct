@@ -10,9 +10,6 @@ pub struct WallhavenResponse {
 #[derive(Serialize, Deserialize)]
 struct Wallpaper {
     path: String,
-    category: String,
-    resolution: String,
-    file_size: u64,
 }
 
 pub fn request_wallpapers(url: &String) -> WallhavenResponse {

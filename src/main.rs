@@ -13,6 +13,5 @@ fn main() {
         None => format!("{url}q={}", args.search_query),
     };
 
-    //println!("{}", &args.search_query);
     request_wallpapers(&url);
 }
