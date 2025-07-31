@@ -18,7 +18,7 @@ pub struct UserArgs {
     ///Shows wallpapers based on a criteria or sorting.
     ///
     ///{date_added(default), relevance, random, views, favorites, toplist}
-    #[arg(value_enum)]
+    #[arg(value_enum, short, long)]
     pub sorting: Option<Sorting>,
 }
 
