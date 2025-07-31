@@ -9,7 +9,7 @@ The executable should spawn in target/release
 ### Usage
 ```wdct --tags <Tags> --sorting [Sorting]```
 
-You can use multiple tags if you quote them. Sorting is optional and it will be based on date_added by default.
+You can use multiple tags if you quote them. Sorting is optional and it will be based on date-added by default.
 
 **Example:** ```wdct --tags "anime fantasy" --sorting random```
 
