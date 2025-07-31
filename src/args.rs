@@ -1,16 +1,27 @@
-use clap::Parser;
+use clap::{Parser, ValueEnum};
+
+#[derive(Clone, ValueEnum)]
+pub enum Sorting {
+    DateAdded,
+    Relevance,
+    Random,
+    View,
+    Favorites,
+    Toplist,
+}
 
 #[derive(Parser)]
-pub struct Args {
+pub struct UserArgs {
     ///Wallpaper tags
     #[arg(short, long)]
-    pub search_query: String,
+    pub tags: String,
     ///Shows wallpapers based on a criteria or sorting.
     ///
     ///{date_added(default), relevance, random, views, favorites, toplist}
-    pub sorting: Option<String>,
+    #[arg(value_enum)]
+    pub sorting: Option<Sorting>,
 }
 
-pub fn parse_commands() -> Args {
-    Args::parse()
+pub fn parse_commands() -> UserArgs {
+    UserArgs::parse()
 }
