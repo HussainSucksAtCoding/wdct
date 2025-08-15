@@ -16,6 +16,12 @@ struct Wallpaper {
     path: String,
 }
 
+fn tags() -> String {
+    let args = parse_commands();
+
+    args.tags
+}
+
 fn sorting_options() -> Option<String> {
     let args = parse_commands();
 
@@ -34,6 +40,7 @@ fn sorting_options() -> Option<String> {
         None => None,
     }
 }
+
 fn toplist_range() -> Option<String> {
     let args = parse_commands();
 
@@ -51,19 +58,21 @@ fn toplist_range() -> Option<String> {
 }
 fn request_formatter() -> String {
     let api_url = String::from("https://wallhaven.cc/api/v1/search?");
-    let mut final_url = api_url;
 
-    final_url = match sorting_options() {
-        Some(sorting) => format!("&{sorting}"),
-        None => final_url
+    let tags = tags();
+    let tags = format!("q={tags}");
+
+    let sorting = match sorting_options() {
+        Some(sorting) => format!("&sorting={sorting}"),
+        None => "".to_string()
     }; 
 
-    final_url = match toplist_range() {
-        Some(range) => format!("&{range}"),
-        None => final_url
+    let range = match toplist_range() {
+        Some(range) => format!("&topRange={range}"),
+        None => "".to_string(),
     }; 
 
-    final_url
+    format!("{api_url}{tags}{sorting}{range}")
 }
 
 pub fn api_call() -> WallhavenResponse {
