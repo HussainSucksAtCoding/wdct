@@ -28,7 +28,7 @@ pub struct UserArgs {
 
     ///Toplist range. Sorting must be toplist.
     #[arg(value_enum, short, long)]
-    pub toprange: Option<TopRange>
+    pub range: Option<TopRange>
 }
 
 pub fn parse_commands() -> UserArgs {

@@ -1,5 +1,3 @@
-use std::ops::Add;
-
 use reqwest::blocking::Client;
 use serde::Deserialize;
 use serde::Serialize;
@@ -39,7 +37,7 @@ fn sorting_options() -> Option<String> {
 fn toplist_range() -> Option<String> {
     let args = parse_commands();
 
-    match args.toprange {
+    match args.range {
         Some(range) => {
             let range_option = match range {
                ThreeMonths => "3M",
