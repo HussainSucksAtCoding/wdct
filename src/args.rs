@@ -1,7 +1,7 @@
 use clap::{Parser, ValueEnum};
 
 #[derive(Clone, ValueEnum)]
-pub enum Sorting {
+pub enum SortingOptions {
     DateAdded,
     Relevance,
     Random,
@@ -17,7 +17,7 @@ pub struct UserArgs {
     pub tags: String,
     ///Shows wallpapers based on a criteria or sorting.
     #[arg(value_enum, short, long)]
-    pub sorting: Option<Sorting>,
+    pub sorting: Option<SortingOptions>,
 }
 
 pub fn parse_commands() -> UserArgs {
