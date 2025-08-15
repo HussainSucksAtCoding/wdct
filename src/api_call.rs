@@ -5,6 +5,7 @@ use serde::Deserialize;
 use serde::Serialize;
 
 use crate::args::SortingOptions::*;
+use crate::args::TopRange::*;
 use crate::args::*;
 
 #[derive(Serialize, Deserialize)]
@@ -35,15 +36,36 @@ fn sorting_options() -> Option<String> {
         None => None,
     }
 }
+fn toplist_range() -> Option<String> {
+    let args = parse_commands();
 
+    match args.toprange {
+        Some(range) => {
+            let range_option = match range {
+               ThreeMonths => "3M",
+               OneMonth => "1M",
+               OneWeek => "1w",
+            }.to_string();
+            Some(range_option)
+        },
+        None => None
+    }
+}
 fn request_formatter() -> String {
     let api_url = String::from("https://wallhaven.cc/api/v1/search?");
-    let final_url = api_url;
+    let mut final_url = api_url;
 
-    match sorting_options() {
-        Some(sorting) => final_url.add(&sorting),
+    final_url = match sorting_options() {
+        Some(sorting) => format!("&{sorting}"),
         None => final_url
-    } 
+    }; 
+
+    final_url = match toplist_range() {
+        Some(range) => format!("&{range}"),
+        None => final_url
+    }; 
+
+    final_url
 }
 
 pub fn api_call() -> WallhavenResponse {
