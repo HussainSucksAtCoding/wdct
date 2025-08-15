@@ -1,7 +1,10 @@
+use std::ops::Add;
+
 use reqwest::blocking::Client;
 use serde::Deserialize;
 use serde::Serialize;
 
+use crate::args::SortingOptions::*;
 use crate::args::*;
 
 #[derive(Serialize, Deserialize)]
@@ -14,26 +17,33 @@ struct Wallpaper {
     path: String,
 }
 
-pub fn request_formatter() -> String {
+fn sorting_options() -> Option<String> {
     let args = parse_commands();
-    let api_url = String::from("https://wallhaven.cc/api/v1/search?");
-
-    let base_url = format!("{}q={}&", api_url, args.tags);
 
     match args.sorting {
         Some(sorting) => {
-            let sorting_url = match sorting {
-                SortingOptions::DateAdded => "date_added",
-                SortingOptions::Relevance => "relevance",
-                SortingOptions::Random => "random",
-                SortingOptions::View => "view",
-                SortingOptions::Favorites => "favorites",
-                SortingOptions::Toplist => "toplist",
-            };
-            format!("{base_url}sorting={sorting_url}")
+            let sorting_option = match sorting {
+                DateAdded => "date_added",
+                Relevance => "relevance",
+                Random => "random",
+                View => "view",
+                Favorites => "favorites",
+                Toplist => "toplist",
+            }.to_string();
+            Some(sorting_option)
         }
-        None => base_url,
+        None => None,
     }
+}
+
+pub fn request_formatter() -> String {
+    let api_url = String::from("https://wallhaven.cc/api/v1/search?");
+    let final_url = api_url;
+
+    match sorting_options() {
+        Some(sorting) => final_url.add(&sorting),
+        None => final_url
+    } 
 }
 
 pub fn api_call() -> WallhavenResponse {
