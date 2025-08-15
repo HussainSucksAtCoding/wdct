@@ -36,7 +36,7 @@ fn sorting_options() -> Option<String> {
     }
 }
 
-pub fn request_formatter() -> String {
+fn request_formatter() -> String {
     let api_url = String::from("https://wallhaven.cc/api/v1/search?");
     let final_url = api_url;
 
