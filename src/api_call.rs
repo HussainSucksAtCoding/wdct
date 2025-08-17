@@ -85,7 +85,6 @@ pub fn api_call() -> WallhavenResponse {
     let client = Client::new();
     let url = request_formatter();
 
-    println!("url: {url}");
     let request = client
         .get(url)
         .header("User-Agent", "my-app")
