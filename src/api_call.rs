@@ -68,7 +68,13 @@ fn request_formatter() -> String {
     }; 
 
     let range = match toplist_range() {
-        Some(range) => format!("&topRange={range}"),
+        Some(range) => {
+            if sorting != "".to_string() && sorting == "&sorting=toplist" {
+                format!("&range={range}")
+            } else {
+                panic!("ERROR: range can only be applied if sorting is set to \"toplist\"");
+            }
+        },
         None => "".to_string(),
     }; 
 
